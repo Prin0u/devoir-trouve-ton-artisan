@@ -32,17 +32,17 @@ FROM tmp_artisan;
 
 INSERT INTO specialite (nom, id_categorie)
 SELECT DISTINCT tmp_artisan.specialite, categorie.id_categorie
-FROM tmp_artisan tmp_artisan
-JOIN categorie categorie ON tmp_artisan.categorie = categorie.nom
+FROM tmp_artisan 
+JOIN categorie ON tmp_artisan.categorie = categorie.nom;
 
 /**
 * Remplir la table artisan avec le bon id_specialite
 */
 
 INSERT INTO artisan (nom, id_specialite, note, ville, a_propos, email, site_web, top)
-SELECT tmp_artisan.nom specialite.id_specialite, tmp_artisan.note, tmp_artisan.ville, tmp_artisan.a_propos, tmp_artisan.email, tmp_artisan.site_web, tmp_artisan.top
-FROM tmp_artisan tmp_artisan
-JOIN categorie categorie ON tmp_artisan.categorie = categorie.nom;
+SELECT tmp_artisan.nom, specialite.id_specialite, tmp_artisan.note, tmp_artisan.ville, tmp_artisan.a_propos, tmp_artisan.email, tmp_artisan.site_web, tmp_artisan.top
+FROM tmp_artisan
+JOIN specialite ON tmp_artisan.specialite = specialite.nom;
 
 /**
 * Supprimer la table temporaire
