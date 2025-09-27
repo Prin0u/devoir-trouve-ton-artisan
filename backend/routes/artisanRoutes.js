@@ -3,6 +3,28 @@ const router = express.Router();
 const Artisan = require("../models/artisan");
 const Specialite = require("../models/specialite");
 const Categorie = require("../models/categorie");
+const { Op } = require("sequelize");
+
+// Route pour la recherche par nom
+
+router.get("/search", async (req, res) => {
+  try {
+    const { name } = req.query;
+
+    if (!name)
+      return res.status(400).json({ message: "Veuillez fournir un nom" });
+
+    const artisans = await Artisan.findAll({
+      where: { nom: { [Op.like]: `%${name}%` } },
+      include: { model: Specialite, include: Categorie },
+    });
+
+    res.json(artisans);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Erreur serveur" });
+  }
+});
 
 // Récupérer tout les artisans avec leur spécialité et catégorie
 

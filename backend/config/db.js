@@ -15,11 +15,4 @@ const sequelize = new Sequelize(
   }
 );
 
-// Test de la connexion
-
-sequelize
-  .authenticate()
-  .then(() => console.log("Connecté à la BDD"))
-  .catch((err) => console.error("Impossible de se connecter à la BDD :", err));
-
 module.exports = sequelize;
