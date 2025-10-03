@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import "../styles/Artisans.scss";
 
 function Artisans() {
@@ -38,6 +39,13 @@ function Artisans() {
 
   return (
     <div className="container my-5 artisans-page">
+      <Helmet>
+        <title>Liste des artisans | Trouve ton artisan</title>
+        <meta
+          name="description"
+          content="Consultez la liste complète des artisans. Recherchez par nom ou catégorie pour trouver un professionnel près de chez vous."
+        />
+      </Helmet>
       <h1 className="text-center mb-4">Liste des artisans</h1>
       <div className="row g-4">
         {artisans.map((artisan) => (
