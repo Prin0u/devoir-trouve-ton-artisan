@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 import "../styles/Home.scss";
 
 function Home() {
@@ -23,6 +24,13 @@ function Home() {
 
   return (
     <div className="container my-5 home-page">
+      <Helmet>
+        <title>Accueil | Trouve ton artisan</title>
+        <meta
+          name="description"
+          content="Trouvez facilement des artisans de confiance. Consultez nos artisans du mois et découvrez comment contacter un professionnel près de chez vous."
+        />
+      </Helmet>
       {/* Titre principal */}
       <h1 className="text-center mb-4">Comment trouver un artisan ?</h1>
 
