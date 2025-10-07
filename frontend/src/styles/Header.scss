@@ -1,0 +1,112 @@
+/* Fonts */
+@font-face {
+  font-family: "Graphik";
+  src: url("../assets/fonts/Graphik-Regular-Trial.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Graphik";
+  src: url("../assets/fonts/Graphik-Bold-Trial.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* Reset global */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Graphik", sans-serif;
+}
+
+/* Header fixe en haut */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+/* Navbar */
+.navbar {
+  background-color: #f1f8fc;
+  padding: 0 2rem;
+}
+
+/* Le burger à droite */
+.navbar-toggler {
+  position: absolute;
+  right: 15px;
+  top: 40px;
+  border: none;
+  background: none;
+}
+
+/* Flex interne du header */
+.header-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* Logo un peu plus gros */
+.navbar-brand img {
+  height: 100px;
+}
+
+/* Menu horizontal desktop */
+.menu-center {
+  display: flex;
+  gap: 2rem;
+  margin: 0 auto; /* centrer horizontalement */
+}
+
+.nav-link {
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #333;
+}
+
+/* Barre de recherche à droite */
+.search-form {
+  margin-left: auto;
+  width: 250px;
+
+  input {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    border: 1px solid #ccc;
+  }
+}
+
+/* Responsive tablette/mobile */
+@media (max-width: 991px) {
+  .menu-center {
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    gap: 0.5rem;
+  }
+
+  .search-form {
+    width: 100%;
+    margin-top: 1rem; /* barre de recherche en dessous du menu */
+  }
+
+  .header-flex {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem 0;
+
+    .search-form input::placeholder {
+      font-size: 0.85rem; /* plus petit sur mobile */
+    }
+  }
+}

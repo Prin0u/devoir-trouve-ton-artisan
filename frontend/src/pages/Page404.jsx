@@ -21,7 +21,6 @@ function Page404() {
         className="img-fluid mb-4"
       />
       {/* Texte */}
-      <h1 className="mb-3">Page non trouvée</h1>
       <p className="text-muted mb-4">
         La page que vous avez demandée n'existe pas ou a été déplacée.
       </p>
