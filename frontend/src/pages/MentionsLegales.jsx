@@ -1,0 +1,26 @@
+import React from "react";
+import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
+
+import "../styles/legales.scss";
+
+function MentionsLegales() {
+  return (
+    <div className="container my-5 text-center">
+      <Helmet>
+        <title>Mentions Légales | Trouve ton artisan</title>
+        <meta
+          name="description"
+          content="Trouvez facilement des artisans de confiance. Consultez nos artisans du mois et découvrez comment contacter un professionnel près de chez vous."
+        />
+      </Helmet>
+      <h1>Mentions légales</h1>
+      <p>Page en construction</p>
+      <Link to="/" className="btn btn-primary">
+        Retour à l'accueil
+      </Link>
+    </div>
+  );
+}
+
+export default MentionsLegales;

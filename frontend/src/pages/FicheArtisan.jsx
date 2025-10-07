@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 import { useParams } from "react-router-dom";
 import "../styles/ficheartisans.scss";
 
@@ -11,7 +12,7 @@ function FicheArtisan() {
   useEffect(() => {
     const fetchArtisan = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/api/artisans/${id}`);
+        const res = await fetch(`http://localhost:5001/api/artisans/${id}`);
         if (!res.ok) throw new Error("Erreur lors du chargement");
         const data = await res.json();
         setArtisan(data);
@@ -28,9 +29,21 @@ function FicheArtisan() {
   if (loading) return <p className="text-center">Chargement de la fiche...</p>;
   if (error) return <p className="text-center">{error}</p>;
   if (!artisan) return <p className="text-center">Aucun artisan trouvé.</p>;
+  const note = parseFloat(artisan.note) || 0;
 
   return (
     <div className="container my-5 fiche-artisan">
+      <Helmet>
+        <title>{artisan.nom} | Fiche artisan | Trouve ton artisan</title>
+        <meta
+          name="description"
+          content={`Découvrez ${artisan.nom}, ${
+            artisan.Specialite?.nom || "artisan"
+          } basé à ${
+            artisan.ville || "une localisation inconnue"
+          }. Contactez-le facilement via notre formulaire.`}
+        />
+      </Helmet>
       {/* Nom + image */}
       <h1 className="mb-4">{artisan.nom}</h1>
       {artisan.image && (
@@ -45,21 +58,26 @@ function FicheArtisan() {
       {/* Infos principales */}
       <div className="mb-4">
         <div className="stars mb-2">
-          {[1, 2, 3, 4, 5].map((s) => (
-            <span
-              key={s}
-              className={s <= artisan.note ? "star filled" : "star"}
-            >
-              ★
-            </span>
-          ))}
+          {[1, 2, 3, 4, 5].map((i) => {
+            const filled = i <= Math.floor(note);
+            const half = !filled && i - 0.5 <= note;
+
+            return (
+              <span
+                key={i}
+                className={`star ${filled ? "filled" : half ? "half" : ""}`}
+              >
+                ★
+              </span>
+            );
+          })}
         </div>
         <p>
           {" "}
           <strong>Spécialité :</strong> {artisan.Specialite?.nom || "—"}
         </p>
         <p>
-          <strong>Localisation :</strong> {artisan.localisation || "—"}
+          <strong>Localisation :</strong> {artisan.ville || "—"}
         </p>
         {artisan.site_web && (
           <p>
@@ -78,7 +96,7 @@ function FicheArtisan() {
       {/* A propos */}
       <div className="mb-5">
         <h2>A propos</h2>
-        <p>{artisan.description || "Aucune description disponible."}</p>
+        <p>{artisan.a_propos || "Aucune description disponible."}</p>
       </div>
       {/* Formulaire de contact */}
       <div>
