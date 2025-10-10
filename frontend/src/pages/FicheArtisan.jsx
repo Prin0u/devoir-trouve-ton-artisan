@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { useParams } from "react-router-dom";
 import "../styles/ficheartisans.scss";
+import imageDefault from "../assets/image-artisan.jpg";
 
 function FicheArtisan() {
   const { id } = useParams();
@@ -31,6 +32,9 @@ function FicheArtisan() {
   if (!artisan) return <p className="text-center">Aucun artisan trouvé.</p>;
   const note = parseFloat(artisan.note) || 0;
 
+  const imageSrc =
+    artisan.image && artisan.image.trim() !== "" ? artisan.image : imageDefault;
+
   return (
     <div className="container my-5 fiche-artisan">
       <Helmet>
@@ -45,16 +49,18 @@ function FicheArtisan() {
         />
       </Helmet>
       {/* Nom + image */}
-      <h1 className="mb-4">{artisan.nom}</h1>
-      {artisan.image && (
-        <div className="text-center mb-4">
-          <img
-            src={artisan.image}
-            alt={artisan.nom}
-            className="img-fluid rounded"
-          />
+      <div className="d-flex flex-column flex-md-row align-items-start mb-4">
+        {/* Titre */}
+        <div className="flex-grow-1">
+          <h1 className="mb-3 mb-md-0">{artisan.nom}</h1>
         </div>
-      )}
+
+        {/* Image */}
+        <div className="ms-md-3 text-md-end">
+          <img src={imageSrc} alt={artisan.nom} className="image-default" />
+        </div>
+      </div>
+
       {/* Infos principales */}
       <div className="mb-4">
         <div className="stars mb-2">

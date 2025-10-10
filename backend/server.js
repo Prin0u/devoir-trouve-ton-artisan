@@ -8,7 +8,6 @@ const sequelize = require("./config/db");
 const artisanRoutes = require("./routes/artisanRoutes");
 const categorieRoutes = require("./routes/categorieRoutes");
 const specialiteRoutes = require("./routes/specialiteRoutes");
-
 const app = express();
 
 // Middlewares
@@ -31,7 +30,7 @@ app.use((req, res) => {
 });
 
 // Lancement du serveur et de la base de données
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 
 sequelize
   .authenticate()

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
+import { Link } from "react-router-dom";
 import "../styles/Home.scss";
 
 function Home() {
@@ -57,35 +58,39 @@ function Home() {
 
           return (
             <div className="col-12 col-md-4" key={artisan.id_artisan}>
-              <div className="card shadow-sm h-100 artisan-card">
-                <div className="card-body d-flex flex-column">
-                  <h5 className="card-title">{artisan.nom}</h5>
-                  <p className="card-text mb-2">
-                    <strong>Spécialité :</strong>{" "}
-                    {artisan.Specialite?.nom || "—"} <br />
-                    <strong>Ville :</strong> {artisan.ville || "—"}
-                  </p>
-                  <div className="mt-auto">
-                    <div className="stars">
-                      {[1, 2, 3, 4, 5].map((i) => {
-                        const filled = i <= Math.floor(note);
-                        const half = !filled && i - 0.5 <= note;
-
-                        return (
-                          <span
-                            key={i}
-                            className={`star ${
-                              filled ? "filled" : half ? "half" : ""
-                            }`}
-                          >
-                            ★
-                          </span>
-                        );
-                      })}
+              <Link
+                to={`/artisan/${artisan.id_artisan}`}
+                className="text-decoration-none d-block h-100"
+              >
+                <div className="card shadow-sm h-100 artisan-card">
+                  <div className="card-body d-flex flex-column">
+                    <h5 className="card-title">{artisan.nom}</h5>
+                    <p className="card-text mb-2">
+                      <strong>Spécialité :</strong>{" "}
+                      {artisan.Specialite?.nom || "—"} <br />
+                      <strong>Localisation :</strong> {artisan.ville || "—"}
+                    </p>
+                    <div className="mt-auto">
+                      <div className="stars">
+                        {[1, 2, 3, 4, 5].map((i) => {
+                          const filled = i <= Math.floor(note);
+                          const half = !filled && i - 0.5 <= note;
+                          return (
+                            <span
+                              key={i}
+                              className={`star ${
+                                filled ? "filled" : half ? "half" : ""
+                              }`}
+                            >
+                              ★
+                            </span>
+                          );
+                        })}
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             </div>
           );
         })}

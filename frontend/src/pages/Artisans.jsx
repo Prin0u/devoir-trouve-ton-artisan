@@ -73,7 +73,7 @@ function Artisans() {
                   <p className="card-text mb-2">
                     <strong>Spécialité :</strong>{" "}
                     {artisan.Specialite?.nom || "—"} <br />
-                    <strong>Ville :</strong> {artisan.ville || "—"}
+                    <strong>Localisation :</strong> {artisan.ville || "—"}
                   </p>
                   <div className="mt-auto">
                     <div className="stars">
