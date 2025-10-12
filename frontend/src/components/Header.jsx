@@ -54,18 +54,17 @@ function Header() {
                 </li>
               ))}
             </ul>
-
-            {/* Formulaire de recherche */}
-            <form className="search-form d-flex" onSubmit={handleSubmit}>
-              <input
-                className="form-control rounded-pill"
-                type="search"
-                placeholder="Rechercher un artisan..."
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-              />
-            </form>
           </div>
+          {/* Formulaire de recherche */}
+          <form className="search-form d-flex mt-2" onSubmit={handleSubmit}>
+            <input
+              className="form-control rounded-pill"
+              type="search"
+              placeholder="Rechercher un artisan..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+          </form>
         </div>
       </nav>
     </header>

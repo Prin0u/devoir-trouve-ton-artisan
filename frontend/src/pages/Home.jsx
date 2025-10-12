@@ -33,10 +33,10 @@ function Home() {
         />
       </Helmet>
       {/* Titre principal */}
-      <h1 className="text-center mb-4">Comment trouver un artisan ?</h1>
+      <h1 className="text-center py-5">Comment trouver un artisan ?</h1>
 
       {/* Les étapes */}
-      <div className="row g-4 mb-5">
+      <div className="row g-4">
         {[
           " Choisir la catégorie d'artisanat dans le menu.",
           " Choisir un artisan.",
@@ -51,7 +51,7 @@ function Home() {
       </div>
 
       {/* Artisans du mois */}
-      <h2 className="text-center mb-4">Artisans du mois</h2>
+      <h2 className="text-center my-5">Artisans du mois</h2>
       <div className="row g-4">
         {artisans.map((artisan) => {
           const note = parseFloat(artisan.note) || 0;
