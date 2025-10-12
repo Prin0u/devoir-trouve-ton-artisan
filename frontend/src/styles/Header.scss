@@ -13,7 +13,7 @@
   font-style: normal;
 }
 
-/* Reset global */
+/* Style global */
 html,
 body {
   margin: 0;
@@ -63,7 +63,7 @@ header {
 .menu-center {
   display: flex;
   gap: 2rem;
-  margin: 0 auto; /* centrer horizontalement */
+  margin: 0 auto;
 }
 
 .nav-link {
@@ -101,8 +101,8 @@ header {
   }
 
   .search-form {
-    margin: 0.8rem auto 0; // centre horizontalement
-    max-width: 80%; // limite la largeur
+    margin: 0.8rem auto 0;
+    max-width: 80%;
 
     input::placeholder {
       font-size: 0.85rem;

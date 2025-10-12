@@ -12,18 +12,17 @@
   font-weight: 700;
   font-style: normal;
 }
+/* Style étoiles */
 .star {
-  color: #ccc; /* gris pour les étoiles vides */
+  color: #ccc;
   font-size: 1.2rem;
-
   position: relative;
 }
 
 .star.filled {
-  color: #00497c; /* étoiles pleines */
+  color: #00497c;
 }
 
-/* Demi-étoile */
 .star.half::before {
   content: "★";
   color: #00497c;
