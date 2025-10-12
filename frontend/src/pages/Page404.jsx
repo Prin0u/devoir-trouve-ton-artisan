@@ -7,6 +7,8 @@ import NotFoundImg from "../assets/404.png";
 function Page404() {
   return (
     <div className="container text-center my-5 page-404">
+      {/* Helmet permet de définir dynamiquement le titre et la meta description de la page */}
+
       <Helmet>
         <title>404 - Page non trouvée | Trouve ton artisan</title>
         <meta

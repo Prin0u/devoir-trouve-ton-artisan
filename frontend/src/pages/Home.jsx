@@ -25,6 +25,8 @@ function Home() {
 
   return (
     <div className="container my-5 home-page">
+      {/* Helmet permet de définir dynamiquement le titre et la meta description de la page */}
+
       <Helmet>
         <title>Accueil | Trouve ton artisan</title>
         <meta
