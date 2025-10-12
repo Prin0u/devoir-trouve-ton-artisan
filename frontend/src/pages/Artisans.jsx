@@ -45,7 +45,7 @@ function Artisans() {
         <title>Liste des artisans | Trouve ton artisan</title>
         <meta
           name="description"
-          content="Consultez la liste complète des artisans. Recherchez par nom ou catégorie pour trouver un professionnel près de chez vous."
+          content="Consultez la liste complète des artisans. Recherchez par nom pour trouver un professionnel près de chez vous."
         />
       </Helmet>
 

@@ -40,8 +40,8 @@ header {
 /* Le burger à droite */
 .navbar-toggler {
   position: absolute;
-  right: 15px;
-  top: 40px;
+  left: 15px;
+  top: 50px;
   border: none;
   background: none;
 }
@@ -75,7 +75,7 @@ header {
 
 /* Barre de recherche à droite */
 .search-form {
-  margin-left: auto;
+  margin-left: 1rem;
   width: 250px;
 
   input {
@@ -86,27 +86,26 @@ header {
   }
 }
 
-/* Responsive tablette/mobile */
 @media (max-width: 991px) {
+  .header-flex {
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 0;
+  }
+
   .menu-center {
     flex-direction: column;
     align-items: center;
-    margin: 0;
     gap: 0.5rem;
+    margin: 0;
   }
 
   .search-form {
-    width: 100%;
-    margin-top: 1rem; /* barre de recherche en dessous du menu */
-  }
+    margin: 0.8rem auto 0; // centre horizontalement
+    max-width: 80%; // limite la largeur
 
-  .header-flex {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 1rem 0;
-
-    .search-form input::placeholder {
-      font-size: 0.85rem; /* plus petit sur mobile */
+    input::placeholder {
+      font-size: 0.85rem;
     }
   }
 }

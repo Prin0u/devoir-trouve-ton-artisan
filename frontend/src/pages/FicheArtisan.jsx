@@ -49,9 +49,9 @@ function FicheArtisan() {
         />
       </Helmet>
       {/* Nom + image */}
-      <div className="d-flex flex-column flex-md-row align-items-start mb-4">
+      <div className="d-flex flex-column flex-md-row align-items-start mb-4 header-section">
         {/* Titre */}
-        <div className="flex-grow-1">
+        <div className="flex-grow-1 ">
           <h1 className="mb-3 mb-md-0">{artisan.nom}</h1>
         </div>
 
