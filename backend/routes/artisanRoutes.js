@@ -61,6 +61,20 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+// Récupérer les artisans du mois
+router.get("/top", async (req, res) => {
+  try {
+    const topArtisans = await Artisan.findAll({
+      where: { top: true },
+      limit: 3,
+    });
+    res.json(topArtisans);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Erreur serveur" });
+  }
+});
+
 // Créer un artisan
 
 router.post("/", async (req, res) => {
