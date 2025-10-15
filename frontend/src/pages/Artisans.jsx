@@ -19,8 +19,10 @@ function Artisans() {
     // Fonction asynchrone pour récupérer les artisans depuis l'API
     const fetchArtisans = async () => {
       try {
-        // Appel à l'API locale pour récupérer tous les artisans
-        const res = await fetch("http://localhost:5001/api/artisans");
+        // Appel à l'API pour récupérer tous les artisans
+        const res = await fetch(
+          "https://devoir-trouve-ton-artisan.onrender.com/api/artisans"
+        );
         const data = await res.json();
 
         // Filtrage des résultats selon la recherche et la catégorie
