@@ -17,7 +17,9 @@ function FicheArtisan() {
     // Fonction asynchrone pour récupérer les données d'un artisan via l'API
     const fetchArtisan = async () => {
       try {
-        const res = await fetch(`http://localhost:5001/api/artisans/${id}`);
+        const res = await fetch(
+          `"https://devoir-trouve-ton-artisan.onrender.com/api/artisans"${id}`
+        );
         if (!res.ok) throw new Error("Erreur lors du chargement"); // Gestion des erreurs HTTP
         const data = await res.json();
         setArtisan(data); // Stockage des données dans le state
