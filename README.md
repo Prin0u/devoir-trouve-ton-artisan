@@ -25,8 +25,10 @@ Avant de lancer le projet, vous devez avoir installé :
 
 1. **Cloner le repository**
 
+```bash
 git clone https://github.com/Prin0u/devoir-trouve-ton-artisan
 cd devoir-trouve-ton-artisan
+```
 
 2. **Installer les dépendances**
 
@@ -41,17 +43,19 @@ cd ../backend
 npm install
 
 3. **Créer et remplir la base de données**
-   cd ..
-   SOURCE schema.sql
 
-   Importer les données de la base depuis le CSV
+- Connectez vous à **MySQL** et exécutez le script de création des tables et importez `data.csv`:
 
-   LOAD DATA LOCAL INFILE 'data.csv'
-   INTO TABLE Artisan
-   FIELDS TERMINATED BY ','
-   ENCLOSED BY '"'
-   LINES TERMINATED BY '\n'
-   IGNORE 1 ROWS;
+  ```sql
+  SOURCE schema.sql;
+
+  LOAD DATA LOCAL INFILE 'data.csv'
+  INTO TABLE Artisan
+  FIELDS TERMINATED BY ','
+  ENCLOSED BY '"'
+  LINES TERMINATED BY '\n'
+  IGNORE 1 ROWS;
+  ```
 
 4. **Configurer l'API**
 
@@ -62,6 +66,8 @@ DB_USER=utilisateur
 DB_PASSWORD=motdepasse
 DB_NAME=trouve_artisan
 PORT=5000
+
+**Ne pas oublier de remplacer DB_USER et DB_PASSWORD par vos identifiants MySQL locaux.**
 
 5. **Lancer l'application**
 
