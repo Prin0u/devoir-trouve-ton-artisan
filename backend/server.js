@@ -11,7 +11,7 @@ const specialiteRoutes = require("./routes/specialiteRoutes");
 const app = express();
 
 // Middlewares
-app.use(cors({ origin: "http://localhost:3000" }));
+app.use(cors({ origin: "*" }));
 app.use(express.json());
 
 // Routes
