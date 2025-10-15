@@ -9,7 +9,9 @@ function Home() {
   useEffect(() => {
     const fetchArtisans = async () => {
       try {
-        const res = await fetch("http://localhost:5001/api/artisans");
+        const res = await fetch(
+          "https://devoir-trouve-ton-artisan.onrender.com/api/artisans"
+        );
         const data = await res.json();
 
         // Filtrer uniquement les artisans top = 1
