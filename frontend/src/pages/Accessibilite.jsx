@@ -9,7 +9,7 @@ function MentionsLegales() {
       <Helmet>
         <title>Accessibilité | Trouve ton artisan</title>
       </Helmet>
-      <h1>Accessibilité</h1>
+      <h1 className="text-center py-5">Accessibilité</h1>
       <p>Page en construction</p>
       <Link to="/" className="btn btn-primary">
         Retour à l'accueil

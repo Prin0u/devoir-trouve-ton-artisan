@@ -9,7 +9,7 @@ function DonneesPersonnelles() {
       <Helmet>
         <title>Données personnelles | Trouve ton artisan</title>
       </Helmet>
-      <h1>Données personnelles</h1>
+      <h1 className="text-center py-5">Données personnelles</h1>
       <p>Page en construction</p>
       <Link to="/" className="btn btn-primary">
         Retour à l'accueil

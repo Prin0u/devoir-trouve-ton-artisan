@@ -65,7 +65,7 @@ function Artisans() {
         />
       </Helmet>
 
-      <h1 className="text-center mb-4">Liste des artisans</h1>
+      <h1 className="text-center py-5">Liste des artisans</h1>
 
       <div className="row g-4">
         {/* Message si aucun artisan ne correspond aux filtres */}
