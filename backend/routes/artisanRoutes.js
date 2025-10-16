@@ -43,8 +43,21 @@ router.get("/", async (req, res) => {
   }
 });
 
-// Récupérer un artisan avec son ID
+// Récupérer les artisans du mois
+router.get("/top", async (req, res) => {
+  try {
+    const topArtisans = await Artisan.findAll({
+      where: { top: true },
+      limit: 3,
+    });
+    res.json(topArtisans);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Erreur serveur" });
+  }
+});
 
+// Récupérer un artisan avec son ID
 router.get("/:id", async (req, res) => {
   try {
     const artisan = await Artisan.findByPk(req.params.id, {
@@ -61,22 +74,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// Récupérer les artisans du mois
-router.get("/top", async (req, res) => {
-  try {
-    const topArtisans = await Artisan.findAll({
-      where: { top: true },
-      limit: 3,
-    });
-    res.json(topArtisans);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Erreur serveur" });
-  }
-});
-
 // Créer un artisan
-
 router.post("/", async (req, res) => {
   try {
     const newArtisan = await Artisan.create(req.body);
@@ -88,7 +86,6 @@ router.post("/", async (req, res) => {
 });
 
 // Modifier un artisan
-
 router.put("/:id", async (req, res) => {
   try {
     const [updated] = await Artisan.update(req.body, {
@@ -107,7 +104,6 @@ router.put("/:id", async (req, res) => {
 });
 
 // Supprimer un artisan
-
 router.delete("/:id", async (req, res) => {
   try {
     const deleted = await Artisan.destroy({
