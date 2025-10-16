@@ -18,7 +18,7 @@ function FicheArtisan() {
     const fetchArtisan = async () => {
       try {
         const res = await fetch(
-          `"https://devoir-trouve-ton-artisan.onrender.com/api/artisans"${id}`
+          `https://devoir-trouve-ton-artisan.onrender.com/api/artisans${id}`
         );
         if (!res.ok) throw new Error("Erreur lors du chargement"); // Gestion des erreurs HTTP
         const data = await res.json();
