@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import "../styles/Artisans.scss";
+import { supabase } from "../supabaseClient";
 
 function Artisans() {
   // State pour stocker la liste des artisans récupérée depuis l'API
@@ -19,26 +20,22 @@ function Artisans() {
     // Fonction asynchrone pour récupérer les artisans depuis l'API
     const fetchArtisans = async () => {
       try {
-        // Appel à l'API pour récupérer tous les artisans
-        const res = await fetch(
-          "https://devoir-trouve-ton-artisan.onrender.com/api/artisans"
-        );
-        const data = await res.json();
+        // Construction de la requête Supabase
+        let query = supabase
+          .from("artisan")
+          .select("*, specialite(nom, categorie(nom))");
 
-        // Filtrage des résultats selon la recherche et la catégorie
+        // Filtrage par nom côté Supabase
+        if (search) query = query.ilike("nom", `%${search}%`);
+
+        const { data, error } = await query;
+        if (error) throw error;
+
+        // Filtrage par catégorie côté client
         let filtered = data;
-
-        // Si un mot-clé de recherche est présent, filtrer par nom
-        if (search) {
-          filtered = filtered.filter((artisan) =>
-            artisan.nom.toLowerCase().includes(search.toLowerCase())
-          );
-        }
-
-        // Si une catégorie est sélectionnée, filtrer par catégorie de spécialité
         if (categorie) {
-          filtered = filtered.filter(
-            (artisan) => artisan.Specialite?.Categorie?.nom === categorie
+          filtered = data.filter(
+            (artisan) => artisan.specialite?.categorie?.nom === categorie
           );
         }
 
@@ -94,7 +91,7 @@ function Artisans() {
                   {/* Spécialité et localisation */}
                   <p className="card-text mb-2">
                     <strong>Spécialité :</strong>{" "}
-                    {artisan.Specialite?.nom || "—"} <br />
+                    {artisan.specialite?.nom || "—"} <br />
                     <strong>Localisation :</strong> {artisan.ville || "—"}
                   </p>
 
