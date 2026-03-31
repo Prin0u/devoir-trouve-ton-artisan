@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import "../styles/Home.scss";
+import { supabase } from "../supabaseClient";
 
 function Home() {
   const [artisans, setArtisans] = useState([]);
@@ -9,14 +10,13 @@ function Home() {
   useEffect(() => {
     const fetchArtisans = async () => {
       try {
-        const res = await fetch(
-          "https://devoir-trouve-ton-artisan.onrender.com/api/artisans"
-        );
-        const data = await res.json();
+        const { data, error } = await supabase
+          .from("artisan")
+          .select("*, specialite(nom)")
+          .eq("top", true);
 
-        // Filtrer uniquement les artisans top = 1
-        const topArtisans = data.filter((artisan) => artisan.top === true);
-        setArtisans(topArtisans);
+        if (error) throw error;
+        setArtisans(data);
       } catch (error) {
         console.error("Erreur lors du chargement des artisans :", error);
       }
@@ -71,7 +71,7 @@ function Home() {
                     <h5 className="card-title">{artisan.nom}</h5>
                     <p className="card-text mb-2">
                       <strong>Spécialité :</strong>{" "}
-                      {artisan.Specialite?.nom || "—"} <br />
+                      {artisan.specialite?.nom || "—"} <br />
                       <strong>Localisation :</strong> {artisan.ville || "—"}
                     </p>
                     <div className="mt-auto">

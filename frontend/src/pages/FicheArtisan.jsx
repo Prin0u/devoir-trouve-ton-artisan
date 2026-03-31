@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet";
 import { useParams } from "react-router-dom";
 import "../styles/ficheartisans.scss";
 import imageDefault from "../assets/image-artisan.jpg";
+import { supabase } from "../supabaseClient";
 
 function FicheArtisan() {
   // Récupération de l'ID depuis l'URL
@@ -17,11 +18,13 @@ function FicheArtisan() {
     // Fonction asynchrone pour récupérer les données d'un artisan via l'API
     const fetchArtisan = async () => {
       try {
-        const res = await fetch(
-          `https://devoir-trouve-ton-artisan.onrender.com/api/artisans/${id}`
-        );
-        if (!res.ok) throw new Error("Erreur lors du chargement"); // Gestion des erreurs HTTP
-        const data = await res.json();
+        const { data, error } = await supabase
+          .from("artisan")
+          .select("*, specialite(nom)")
+          .eq("id_artisan", id)
+          .single();
+
+        if (error) throw error;
         setArtisan(data); // Stockage des données dans le state
       } catch (err) {
         setError(err.message); // Stockage du message d'erreur
@@ -50,7 +53,7 @@ function FicheArtisan() {
         <meta
           name="description"
           content={`Découvrez ${artisan.nom}, ${
-            artisan.Specialite?.nom || "artisan"
+            artisan.specialite?.nom || "artisan"
           } basé à ${
             artisan.ville || "une localisation inconnue"
           }. Contactez-le facilement via notre formulaire.`}
@@ -89,7 +92,7 @@ function FicheArtisan() {
 
         {/* Spécialité et localisation */}
         <p>
-          <strong>Spécialité :</strong> {artisan.Specialite?.nom || "—"}
+          <strong>Spécialité :</strong> {artisan.specialite?.nom || "—"}
         </p>
         <p>
           <strong>Localisation :</strong> {artisan.ville || "—"}
