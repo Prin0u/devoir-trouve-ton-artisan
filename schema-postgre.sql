@@ -2,15 +2,15 @@
 -- Table temporaire des artisans (import brut)
 -- ===========================================
 CREATE TABLE tmp_artisan (
-    nom VARCHAR(255),             -- Nom de l'artisan ou de l'entreprise
-    specialite VARCHAR(100),      -- Nom de la spécialité
-    note NUMERIC(2,1),            -- Note sur 5 étoiles
-    ville VARCHAR(100),           -- Ville
-    a_propos TEXT,                -- Description / à propos de l'artisan
-    email VARCHAR(255),           -- Email de contact
-    site_web VARCHAR(255),        -- Site web (optionnel)
-    categorie VARCHAR(100),       -- Nom de la catégorie
-    top BOOLEAN                   -- Artisan du mois (TRUE/FALSE)
+    nom VARCHAR(255),            
+    specialite VARCHAR(100),   
+    note NUMERIC(2,1),            
+    ville VARCHAR(100),           
+    a_propos TEXT,              
+    email VARCHAR(255),          
+    site_web VARCHAR(255),        
+    categorie VARCHAR(100),       
+    top BOOLEAN                   
 );
 
 -- ===========================================
@@ -39,10 +39,10 @@ CREATE TABLE artisan (
     nom VARCHAR(255) NOT NULL,
     id_specialite INTEGER NOT NULL REFERENCES specialite(id_specialite)
         ON DELETE CASCADE,
-    note NUMERIC(2,1),
+    note NUMERIC(2,1) CHECK (note >= 0 AND note <= 5),
     ville VARCHAR(100),
     a_propos TEXT,
-    email VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
     site_web VARCHAR(255),
     top BOOLEAN DEFAULT FALSE
 );
